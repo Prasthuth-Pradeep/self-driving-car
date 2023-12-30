@@ -1,7 +1,7 @@
 class Sensor {
     constructor(car) {
         this.car = car;
-        this.rayCount = 1;
+        this.rayCount = 3;
         this.rayLength = 100;
         this.raySpread = Math.PI / 4; // 45 degree
 
@@ -9,6 +9,10 @@ class Sensor {
     }
 
     update() {
+        this.#castRays();
+    }
+
+    #castRays() {
         this.rays = [];
         for (let i = 0; i < this.rayCount; i++) {
             const rayAngle = lerp(
@@ -26,6 +30,7 @@ class Sensor {
             this.rays.push([start, end]);
         }
     }
+
 
     draw(ctx) {
         for (let i = 0; i < this.rayCount; i++) {
